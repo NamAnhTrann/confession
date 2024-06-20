@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMU5eeb03fEzgy+qFEdtHeROjCZ1E2ot+1p+IF" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-rabbit"></i>Can I be your boba provider :>>></h1>
+        <form id="proposalForm">
+            <div class="radio-container">
+                <input type="radio" id="yes" name="answer" value="Yes!" required>
+                <label for="yes">Yes!</label>
+                <input type="radio" id="no" name="answer" value="No Way!" required>
+                <label for="no" id="noLabel">No D:</label>
+            </div>
+            <button type="submit">answerr!!!</button>
+        </form>
+        <div id="result">
+            <p class="message yes">:></p>
+            <p class="message no">Oh no, this option is no longer available :></p>
+            <p class="message invalid">Please select an option.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
