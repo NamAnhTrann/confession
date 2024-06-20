@@ -19,7 +19,7 @@ const noLabel = document.getElementById('noLabel');
 const moveDistance = 50;
 
 noLabel.addEventListener('mouseenter', function() {
-    moveLabel();
+    setTimeout(moveLabel, 100); // Add 0.1 second (100 milliseconds) delay before moving
 });
 
 function moveLabel() {
