@@ -1,17 +1,37 @@
-body {
-    background-color: #f8b8b8;
-    margin: 0;
-    height: 100vh; /* Ensure the body takes up the full height of the viewport */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    font-family: Arial, sans-serif;
+:root {
+    /* Color Variables */
+    --background-color: #ffd1dc; /* Light pink */
+    --background-color-alt: #ffe6e6; /* Soft pink */
+    --text-color: #b84747; /* Deep red */
+    --highlight-color: #ff5e5e; /* Bright coral red */
+    --border-color: #ff8585; /* Light coral red */
+    --link-color: #ff6f6f; /* Coral red */
+    --link-hover-color: #ffc1c1; /* Light blush pink */
+    --button-bg-color: #ff5e5e; /* Bright coral red */
+    --button-hover-bg-color: #e55e5e; /* Slightly muted coral red */
+    --countdown-color: rgba(255, 255, 255, 0.6); /* Soft white */
+
+    /* Font Variables */
+    --font-family: "Wittgenstein", serif;
+    --font-optical-sizing: auto;
+    --font-weight: <weight>;
+    --font-style: normal;
+    --font-size-large: 2.5em;
+    --font-size-medium: 1.5em;
+    --font-size-small: 1em;
+    --font-size-xlarge: 10em;
 }
 
-
+body {
+    background-color: var(--background-color);
+    margin: 0;
+    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    font-family: var(--font-family);
+}
 
 @keyframes backgroundAnimation {
-    0% { background-color: #f8b8b8; }
-    100% { background-color: #ffe6e6; }
+    0% { background-color: var(--background-color); }
+    100% { background-color: var(--background-color-alt); }
 }
 
 #countdown {
@@ -19,8 +39,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 10em;
-    color: rgba(255, 255, 255, 0.438); /* Light color to appear in the background */
+    font-size: var(--font-size-xlarge);
+    color: var(--countdown-color);
     z-index: -1; /* Ensure it stays behind other elements */
     pointer-events: none; /* Allow clicks to pass through */
 }
@@ -39,14 +59,14 @@ body {
 }
 
 h1 {
-    color: #b84747;
-    font-size: 2.5em;
+    color: var(--text-color);
+    font-size: var(--font-size-large);
     animation: textGlow 1.5s infinite alternate;
 }
 
 @keyframes textGlow {
-    from { text-shadow: 0 0 5px #ff0080; }
-    to { text-shadow: 0 0 20px #ff0080; }
+    from { text-shadow: 0 0 5px var(--highlight-color); }
+    to { text-shadow: 0 0 20px var(--highlight-color); }
 }
 
 .radio-container {
@@ -63,15 +83,14 @@ input[type="radio"] {
     display: none;
 }
 
-/* Add this to your existing CSS */
 label {
     margin: 0 20px;
     padding: 20px;
-    border: 2px solid #ff0080;
+    border: 2px solid var(--highlight-color);
     border-radius: 10px;
     cursor: pointer;
-    font-size: 18px;
-    color: #b84747;
+    font-size: var(--font-size-medium);
+    color: var(--text-color);
     transition: background-color 0.1s, color 0.1s, left 0.1s ease, top 0.1s ease; /* Faster transition */
     width: 100px; /* Set a fixed width */
     text-align: center;
@@ -80,7 +99,7 @@ label {
 }
 
 input[type="radio"]:checked + label {
-    background-color: #ff0080;
+    background-color: var(--highlight-color);
     color: white;
 }
 
@@ -89,11 +108,11 @@ input[type="radio"]:checked + label {
 }
 
 button {
-    background-color: #ff0080;
+    background-color: var(--button-bg-color);
     color: white;
     border: none;
     padding: 15px 30px;
-    font-size: 18px;
+    font-size: var(--font-size-medium);
     cursor: pointer;
     border-radius: 10px;
     margin-top: 20px;
@@ -101,15 +120,15 @@ button {
 }
 
 button:hover {
-    background-color: #cc0066;
+    background-color: var(--button-hover-bg-color);
     transform: scale(1.05);
 }
 
 #result {
     margin-top: 20px;
     font-size: 24px;
-    color: #b84747;
-    animation: resultFadeIn 05s ease-in-out;
+    color: var(--text-color);
+    animation: resultFadeIn 0.5s ease-in-out;
 }
 
 @keyframes resultFadeIn {
@@ -171,7 +190,6 @@ input#no:checked ~ #result .no {
     }
 }
 
-
 header {
     background-color: #333; /* Background color for the navbar */
     padding: 10px 0; /* Padding for top and bottom */
@@ -193,7 +211,7 @@ header {
 }
 
 .game {
-    font-size: 30px;
+    font-size: var(--font-size-large);
     display: flex;
     flex-direction: column; /* Arrange children in a column */
     align-items: center; /* Center children horizontally */
@@ -213,143 +231,35 @@ header {
 .nav-items a {
     text-decoration: none; /* Remove underline from links */
     color: white; /* Link color */
-    font-size: 16px; /* Font size for links */
+    font-size: var(--font-size-small); /* Font size for links */
     transition: color 0.2s ease; /* Smooth transition for color change */
-
 }
 
 .nav-items a:hover {
-    color: #ec6969; /* Change color on hover */
-
+    color: var(--border-color); /* Change color on hover */
 }
 
 .game-content {
-    font-size: 30px; /* Font size for the paragraph */
-    align-items:center;
+    font-size: var(--font-size-large); /* Font size for the paragraph */
+    align-items: center;
 }
 
 .game-content a {
     text-decoration: none;
-    color: #ec6969;
-    border: 2px solid #ec6969;
+    color: var(--link-color);
+    border: 2px solid var(--link-color);
     border-radius: 15px;
     padding: 10px 20px;
-    font-size: 20px;
+    font-size: var(--font-size-medium);
     transition: background-color 0.5s ease;
 }
+
 .game h1 {
     margin-bottom: 20px; /* Add some space below the heading */
 }
 
 .game-content a:hover {
-    background-color: #ec696943;
-}
-header {
-    background-color: #333;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.game-selection {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-items li {
-    margin: 0 15px;
-}
-
-.nav-items a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: color 1s ease;
-}
-
-.nav-items a:hover {
-    color: #ec6969;
-}
-
-header {
-    background-color: #333333;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.game-selection {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-items li {
-    margin: 0 15px;
-}
-
-.nav-items a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: color 1s ease;
-}
-
-.nav-items a:hover {
-    color: #ec6969;
-}
-
-header {
-    background-color: #333;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-.game-selection {
-    display: flex;
-    justify-content: center;
-}
-
-.nav-items {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-items li {
-    margin: 0 15px;
-}
-
-.nav-items a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    transition: color 0.5s ease;
-}
-
-.nav-items a:hover {
-    color: #ec6969;
+    background-color: var(--link-hover-color);
 }
 
 .credit {
@@ -375,7 +285,7 @@ header {
 }
 
 .item-container {
-    border: 2px solid #ec6969;
+    border: 2px solid var(--border-color);
     border-radius: 15px;
     padding: 20px;
     margin: 10px;
@@ -383,13 +293,14 @@ header {
     display: inline-block;
     width: calc(33.33% - 40px); /* Ensures all boxes have the same width */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
-    height:auto;
+    height: auto;
     transition: background-color 0.5s ease; /* Transition for background-color */
 }
-.item-container:hover{
-    background-color: #ec696943;
 
+.item-container:hover {
+    background-color: var(--link-hover-color);
 }
+
 .item-container h1 {
     font-size: 24px;
 }
