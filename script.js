@@ -16,28 +16,18 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
-const yesLabel = document.querySelector('label[for="yes"]');
-const moveDistance = 300; // Minimum move distance away from the cursor
+const moveDistance = 400; // Minimum move distance away from the cursor
 let timer;
 let countdown;
 const countdownElement = document.createElement('div');
 countdownElement.id = 'countdown';
 document.body.appendChild(countdownElement);
 
-noLabel.addEventListener('mouseenter', handleMoveLabel);
-noLabel.addEventListener('touchstart', handleMoveLabel);
-noLabel.addEventListener('touchmove', handleMoveLabel);
+noLabel.addEventListener('mouseenter', function (event) {
+    moveLabel(event);
+});
 
-function handleMoveLabel(event) {
-    if (event.type === 'mouseenter' || event.type === 'mousemove') {
-        moveLabel(event.clientX, event.clientY);
-    } else if (event.type === 'touchstart' || event.type === 'touchmove') {
-        const touch = event.touches[0];
-        moveLabel(touch.clientX, touch.clientY);
-    }
-}
-
-function moveLabel(cursorX, cursorY) {
+function moveLabel(event) {
     const container = document.querySelector('.radio-container');
     const labelRect = noLabel.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
@@ -47,7 +37,7 @@ function moveLabel(cursorX, cursorY) {
     do {
         newLeft = Math.random() * (containerRect.width - labelRect.width);
         newTop = Math.random() * (containerRect.height - labelRect.height);
-    } while (isTooCloseToCursor(newLeft, newTop, cursorX, cursorY));
+    } while (isTooCloseToCursor(newLeft, newTop, event.clientX, event.clientY));
 
     noLabel.style.position = 'absolute';
     noLabel.style.left = `${newLeft}px`;
@@ -77,7 +67,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
-            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" label
+            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" button
 
             const resultDiv = document.getElementById('result');
             resultDiv.textContent = 'TOO LATE, ITS A YES';
@@ -98,7 +88,7 @@ function resetTimer() {
 document.addEventListener('DOMContentLoaded', (event) => {
     startTimer();
     document.getElementById('noLabel').addEventListener('click', resetTimer);
-    document.getElementById('yes').addEventListener('click', resetTimer);
+    document.getElementById('yesLabel').addEventListener('click', resetTimer);
 });
 
 function showConfetti() {
