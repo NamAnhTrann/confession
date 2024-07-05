@@ -16,7 +16,8 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
-const moveDistance = 300; // Minimum move distance away from the cursor
+const moveDistance = 400; // Minimum move distance away from the cursor
+let firstClick = true;
 let timer;
 let countdown;
 const countdownElement = document.createElement('div');
@@ -25,6 +26,13 @@ document.body.appendChild(countdownElement);
 
 noLabel.addEventListener('mouseenter', function (event) {
     moveLabel(event);
+});
+
+noLabel.addEventListener('click', function (event) {
+    if (firstClick) {
+        firstClick = false;
+        showTemporaryMessage('OOPS IT SLIPS AWAY');
+    }
 });
 
 function moveLabel(event) {
@@ -57,7 +65,7 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 5;
+    let timeLeft = 8;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
@@ -110,4 +118,28 @@ function showConfetti() {
 function getRandomColor() {
     const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7'];
     return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function showTemporaryMessage(message) {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.fontSize = '2em';
+    messageElement.style.color = '#ff0080';
+    messageElement.style.backgroundColor = '#ffe6e6';
+    messageElement.style.padding = '20px';
+    messageElement.style.borderRadius = '10px';
+    messageElement.style.zIndex = '1000';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        messageElement.style.transition = 'opacity 0.3s';
+        messageElement.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(messageElement);
+        }, 300);
+    }, 300);
 }
