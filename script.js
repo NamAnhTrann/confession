@@ -3,11 +3,15 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
     const resultDiv = document.getElementById('result');
     const selectedOption = document.querySelector('input[name="answer"]:checked');
     if (selectedOption) {
+        clearInterval(countdown); // Stop the timer
         if (selectedOption.value === 'No Way!') {
             resultDiv.textContent = 'Oh no, this option is no longer available :>';
         } else if (selectedOption.value === 'Yes!') {
             resultDiv.textContent = ':>';
+            noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
+            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" button
         }
+        showRetryButton(); // Show the retry button
     } else {
         resultDiv.textContent = 'Please select an option.';
     }
@@ -42,7 +46,13 @@ const handleNoLabelClick = debounce(function (event) {
         moveLabel(event); // Move the label on the second click
         noRadio.checked = false; // Deselect the "No" radio button
         console.log('Second click: "No" radio button deselected and moved'); // Debug log
-    }
+    } else if (clickCount === 3) {
+        showTemporaryMessage('OH NO, IT SLIPS AGAIN, LAST TIME :>>>');
+        moveLabel(event); // Move the label on the second click
+        noRadio.checked = false; // Deselect the "No" radio button
+        console.log('Second click: "No" radio button deselected and moved');
+    }    
+    
 }, 200); // Adjust the debounce delay as needed
 
 noLabel.addEventListener('click', handleNoLabelClick);
@@ -100,6 +110,8 @@ function startTimer() {
             showTemporaryMessage('20 SECONDS LEFT!!');
         } else if (timeLeft === 10) {
             showTemporaryMessage('10 SECONDS LEFT!!');
+        } else if (timeLeft === 5) { // Corrected variable name
+            showTemporaryMessage('5 SECONDS LEFT GOGO!!');
         }
 
         if (timeLeft <= 0) {
@@ -119,6 +131,7 @@ function startTimer() {
         }
     }, 1000); // Update every second
 }
+
 
 document.addEventListener('DOMContentLoaded', (event) => {
     startTimer();

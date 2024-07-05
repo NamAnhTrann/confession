@@ -58,14 +58,15 @@ h1 {
     align-items: center;
     margin: 20px auto; /* Center the container */
     position: relative;
-    width: 400px; /* Set container width to 400px */
-    height: 400px; /* Set container height to 400px */
+    width: 600px; /* Set container width to 400px */
+    height: 450px; /* Set container height to 400px */
 }
 
 input[type="radio"] {
     display: none;
 }
 
+/* Add this to your existing CSS */
 label {
     margin: 0 20px;
     padding: 20px;
@@ -74,7 +75,7 @@ label {
     cursor: pointer;
     font-size: 18px;
     color: #b84747;
-    transition: background-color 0.1s, color 0.1s, left 0.1s ease, top 0.1s ease; /* Add smooth transition for position changes */
+    transition: background-color 0.1s, color 0.1s, left 0.1s ease, top 0.1s ease; /* Faster transition */
     width: 100px; /* Set a fixed width */
     text-align: center;
     box-sizing: border-box;
@@ -84,6 +85,10 @@ label {
 input[type="radio"]:checked + label {
     background-color: #ff0080;
     color: white;
+}
+
+.noLabelMoving {
+    transition: left 0.05s ease, top 0.05s ease; /* Even faster transition for movement */
 }
 
 button {
