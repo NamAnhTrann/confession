@@ -16,7 +16,7 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
-const yesLabel = document.getElementById('yes');
+const yesLabel = document.querySelector('label[for="yes"]');
 const moveDistance = 300; // Minimum move distance away from the cursor
 let timer;
 let countdown;
@@ -68,7 +68,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown);
             noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
-            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" button
+            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" label
 
             const resultDiv = document.getElementById('result');
             resultDiv.textContent = 'TOO LATE, ITS A YES';
@@ -89,7 +89,7 @@ function resetTimer() {
 document.addEventListener('DOMContentLoaded', (event) => {
     startTimer();
     document.getElementById('noLabel').addEventListener('click', resetTimer);
-    document.getElementById('yesLabel').addEventListener('click', resetTimer);
+    document.getElementById('yes').addEventListener('click', resetTimer);
 });
 
 function showConfetti() {
@@ -105,10 +105,5 @@ function showConfetti() {
     setTimeout(() => {
         const confettis = document.querySelectorAll('.confetti');
         confettis.forEach(confetti => confetti.remove());
-    }, 4000); // Remove confetti after 4 seconds
-}
-
-function getRandomColor() {
-    const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7'];
-    return colors[Math.floor(Math.random() * colors.length)];
+    }, 4000); // Remove confetti
 }
