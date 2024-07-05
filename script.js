@@ -58,7 +58,7 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 4;
+    let timeLeft = 10;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
