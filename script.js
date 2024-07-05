@@ -78,7 +78,7 @@ function moveLabel(event) {
 
 function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
     const labelCenterX = newLeft + noLabel.offsetWidth / 2;
-    const labelCenterY = newTop + newTop.offsetHeight / 2;
+    const labelCenterY = newTop + noLabel.offsetHeight / 2;
 
     const distance = Math.sqrt(
         Math.pow(labelCenterX - cursorX, 2) +
@@ -113,6 +113,9 @@ function startTimer() {
             setTimeout(() => resultDiv.classList.remove('show'), 2000);
 
             showConfetti(); // Show confetti animation
+
+            // Show the retry button
+            showRetryButton();
         }
     }, 1000); // Update every second
 }
@@ -164,4 +167,32 @@ function showTemporaryMessage(message) {
             document.body.removeChild(messageElement);
         }, 200); // Changed to 200ms for 0.2 seconds display
     }, 200); // Changed to 200ms for 0.2 seconds display
+}
+
+function showRetryButton() {
+    const retryButton = document.createElement('button');
+    retryButton.textContent = 'Retry';
+    retryButton.style.position = 'fixed';
+    retryButton.style.top = '60%';
+    retryButton.style.left = '50%';
+    retryButton.style.transform = 'translate(-50%, -50%)';
+    retryButton.style.fontSize = '1.5em';
+    retryButton.style.color = '#fff';
+    retryButton.style.backgroundColor = '#ff0080';
+    retryButton.style.padding = '10px 20px';
+    retryButton.style.border = 'none';
+    retryButton.style.borderRadius = '10px';
+    retryButton.style.cursor = 'pointer';
+    retryButton.style.zIndex = '1000';
+    document.body.appendChild(retryButton);
+
+    retryButton.addEventListener('click', function () {
+        // Reset the game
+        clickCount = 0;
+        countdownElement.textContent = '';
+        noLabel.classList.remove('fade-out');
+        yesLabel.classList.remove('center-yes');
+        document.body.removeChild(retryButton);
+        startTimer();
+    });
 }
