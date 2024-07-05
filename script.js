@@ -1,4 +1,4 @@
-document.getElementById('proposalForm').addEventListener('submit', function(event) {
+document.getElementById('proposalForm').addEventListener('submit', function (event) {
     event.preventDefault();
     const resultDiv = document.getElementById('result');
     const selectedOption = document.querySelector('input[name="answer"]:checked');
@@ -18,8 +18,8 @@ document.getElementById('proposalForm').addEventListener('submit', function(even
 const noLabel = document.getElementById('noLabel');
 const moveDistance = 50;
 
-noLabel.addEventListener('mouseenter', function() {
-    setTimeout(moveLabel, 100); // Add 0.1 second (100 milliseconds) delay before moving
+noLabel.addEventListener('mouseenter', function () {
+    setTimeout(moveLabel, 40   ); // Add 0.1 second (100 milliseconds) delay before moving
 });
 
 function moveLabel() {
