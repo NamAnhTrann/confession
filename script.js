@@ -78,7 +78,7 @@ function moveLabel(event) {
 
 function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
     const labelCenterX = newLeft + noLabel.offsetWidth / 2;
-    const labelCenterY = newTop + noLabel.offsetHeight / 2;
+    const labelCenterY = newTop + newTop.offsetHeight / 2;
 
     const distance = Math.sqrt(
         Math.pow(labelCenterX - cursorX, 2) +
@@ -89,12 +89,18 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 30  ;
+    let timeLeft = 30;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
         timeLeft--;
         countdownElement.textContent = `${timeLeft}s`;
+
+        if (timeLeft === 20) {
+            showTemporaryMessage('20 SECONDS LEFT!!');
+        } else if (timeLeft === 10) {
+            showTemporaryMessage('10 SECONDS LEFT!!');
+        }
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
@@ -156,6 +162,6 @@ function showTemporaryMessage(message) {
         messageElement.style.opacity = '0';
         setTimeout(() => {
             document.body.removeChild(messageElement);
-        }, 300);
-    }, 300);
+        }, 200); // Changed to 200ms for 0.2 seconds display
+    }, 200); // Changed to 200ms for 0.2 seconds display
 }
