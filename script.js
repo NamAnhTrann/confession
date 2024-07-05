@@ -16,47 +16,76 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
-const moveDistance = 300; // Increase the move distance
+const moveDistance = 300; // Minimum move distance away from the cursor
 let timer;
+let countdown;
+const countdownElement = document.createElement('div');
+countdownElement.style.position = 'fixed';
+countdownElement.style.top = '20px';
+countdownElement.style.right = '20px';
+countdownElement.style.fontSize = '2em';
+countdownElement.style.color = '#b84747';
+document.body.appendChild(countdownElement);
 
-noLabel.addEventListener('mouseenter', function () {
-    setTimeout(moveLabel, 30); // Add 0.03 second (30 milliseconds) delay before moving
+noLabel.addEventListener('mouseenter', function (event) {
+    moveLabel(event);
 });
 
-function moveLabel() {
+function moveLabel(event) {
     const container = document.querySelector('.radio-container');
     const labelRect = noLabel.getBoundingClientRect();
     const containerRect = container.getBoundingClientRect();
 
-    let newLeft = Math.random() * (containerRect.width - labelRect.width);
-    let newTop = Math.random() * (containerRect.height - labelRect.height);
+    let newLeft, newTop;
 
-    // Ensure the label stays within the container bounds
-    if (labelRect.left < containerRect.left) newLeft = Math.min(newLeft + moveDistance, containerRect.width - labelRect.width);
-    if (labelRect.right > containerRect.right) newLeft = Math.max(newLeft - moveDistance, 0);
-    if (labelRect.top < containerRect.top) newTop = Math.min(newTop + moveDistance, containerRect.height - labelRect.height);
-    if (labelRect.bottom > containerRect.bottom) newTop = Math.max(newTop - moveDistance, 0);
+    do {
+        newLeft = Math.random() * (containerRect.width - labelRect.width);
+        newTop = Math.random() * (containerRect.height - labelRect.height);
+    } while (isTooCloseToCursor(newLeft, newTop, event.clientX, event.clientY));
 
     noLabel.style.position = 'absolute';
     noLabel.style.left = `${newLeft}px`;
     noLabel.style.top = `${newTop}px`;
 }
 
+function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
+    const labelCenterX = newLeft + noLabel.offsetWidth / 2;
+    const labelCenterY = newTop + noLabel.offsetHeight / 2;
+
+    const distance = Math.sqrt(
+        Math.pow(labelCenterX - cursorX, 2) +
+        Math.pow(labelCenterY - cursorY, 2)
+    );
+
+    return distance < moveDistance;
+}
+
 function startTimer() {
-    timer = setTimeout(() => {
-        noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
+    let timeLeft = 5;
+    countdownElement.textContent = `Time left: ${timeLeft}s`;
 
-        const resultDiv = document.getElementById('result');
-        resultDiv.textContent = 'TOO LATE, ITS A YES';
-        resultDiv.classList.add('show');
-        setTimeout(() => resultDiv.classList.remove('show'), 2000);
+    countdown = setInterval(() => {
+        timeLeft--;
+        countdownElement.textContent = `Time left: ${timeLeft}s`;
 
-        showConfetti(); // Show confetti animation
-    }, 10000); // 10 seconds timer
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = 'TOO LATE, ITS A YES';
+            resultDiv.classList.add('show');
+            setTimeout(() => resultDiv.classList.remove('show'), 2000);
+
+            showConfetti(); // Show confetti animation
+        }
+    }, 1000); // Update every second
 }
 
 function resetTimer() {
     clearTimeout(timer);
+    clearInterval(countdown);
+    countdownElement.textContent = '';
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
