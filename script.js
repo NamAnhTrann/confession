@@ -16,7 +16,7 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
-const moveDistance = 400; // Minimum move distance away from the cursor
+const moveDistance = 300; // Minimum move distance away from the cursor
 let timer;
 let countdown;
 const countdownElement = document.createElement('div');
@@ -57,7 +57,7 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 10;
+    let timeLeft = 5;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {

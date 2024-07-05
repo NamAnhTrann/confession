@@ -23,7 +23,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 10em;
-    color: rgba(255, 255, 255, 0.1); /* Light color to appear in the background */
+    color: rgba(255, 255, 255, 0.438); /* Light color to appear in the background */
     z-index: -1; /* Ensure it stays behind other elements */
     pointer-events: none; /* Allow clicks to pass through */
 }
@@ -78,8 +78,7 @@ label {
     width: 100px; /* Set a fixed width */
     text-align: center;
     box-sizing: border-box;
-        display: inline-block; /* Display labels side by side */
-
+    display: inline-block; /* Display labels side by side */
 }
 
 input[type="radio"]:checked + label {
@@ -108,7 +107,7 @@ button:hover {
     margin-top: 20px;
     font-size: 24px;
     color: #b84747;
-    animation: resultFadeIn 0.5s ease-in-out;
+    animation: resultFadeIn 05s ease-in-out;
 }
 
 @keyframes resultFadeIn {
@@ -149,11 +148,11 @@ input#no:checked ~ #result .no {
     width: 10px;
     height: 10px;
     background: red;
-    opacity: 0;
-    animation: confetti 2s ease-out forwards;
+    opacity: 1;
+    animation: confettiFall 2s ease-out forwards;
 }
 
-@keyframes confetti {
+@keyframes confettiFall {
     to {
         transform: translateY(100vh) rotate(360deg);
         opacity: 1;
