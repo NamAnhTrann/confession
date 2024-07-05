@@ -1,37 +1,54 @@
 :root {
     /* Color Variables */
-    --background-color: #ffd1dc; /* Light pink */
-    --background-color-alt: #ffe6e6; /* Soft pink */
-    --text-color: #b84747; /* Deep red */
-    --highlight-color: #ff5e5e; /* Bright coral red */
-    --border-color: #ff8585; /* Light coral red */
-    --link-color: #ff6f6f; /* Coral red */
-    --link-hover-color: #ffc1c1; /* Light blush pink */
-    --button-bg-color: #ff5e5e; /* Bright coral red */
-    --button-hover-bg-color: #e55e5e; /* Slightly muted coral red */
-    --countdown-color: rgba(255, 255, 255, 0.6); /* Soft white */
+    --background-color: #ffd1dc;
+    /* Light pink */
+    --background-color-alt: #ffe6e6;
+    /* Soft pink */
+    --text-color: #b84747;
+    /* Deep red */
+    --highlight-color: #ff5e5e;
+    /* Bright coral red */
+    --border-color: #ff8585;
+    /* Light coral red */
+    --link-color: #ff6f6f;
+    /* Coral red */
+    --link-hover-color: #ffc1c1;
+    /* Light blush pink */
+    --button-bg-color: #ff5e5e;
+    /* Bright coral red */
+    --button-hover-bg-color: #e55e5e;
+    /* Slightly muted coral red */
+    --countdown-color: rgba(255, 255, 255, 0.6);
+    /* Soft white */
 
     /* Font Variables */
     --font-family: "Wittgenstein", serif;
-    --font-optical-sizing: auto;
-    --font-weight: normal;
-    --font-style: normal;
-    --font-size-large: 5vh; /* 2.5em equivalent */
-    --font-size-medium: 3vh; /* 1.5em equivalent */
-    --font-size-small: 2vh; /* 1em equivalent */
-    --font-size-xlarge: 20vh; /* 10em equivalent */
+    --font-size-large: 5vh;
+    /* 2.5em equivalent */
+    --font-size-medium: 3vh;
+    /* 1.5em equivalent */
+    --font-size-small: 2vh;
+    /* 1em equivalent */
+    --font-size-xlarge: 20vh;
+    /* 10em equivalent */
 }
 
 body {
     background-color: var(--background-color);
     margin: 0;
-    height: 100vh; /* Ensure the body takes up the full height of the viewport */
+    height: 100vh;
+    /* Ensure the body takes up the full height of the viewport */
     font-family: var(--font-family);
 }
 
 @keyframes backgroundAnimation {
-    0% { background-color: var(--background-color); }
-    100% { background-color: var(--background-color-alt); }
+    0% {
+        background-color: var(--background-color);
+    }
+
+    100% {
+        background-color: var(--background-color-alt);
+    }
 }
 
 #countdown {
@@ -41,21 +58,31 @@ body {
     transform: translate(-50%, -50%);
     font-size: var(--font-size-xlarge);
     color: var(--countdown-color);
-    z-index: -1; /* Ensure it stays behind other elements */
-    pointer-events: none; /* Allow clicks to pass through */
+    z-index: -1;
+    /* Ensure it stays behind other elements */
+    pointer-events: none;
+    /* Allow clicks to pass through */
 }
 
 .container {
     text-align: center;
     animation: containerFadeIn 1s ease-in-out;
-    padding: 2vh; /* Equivalent to 20px */
+    padding: 2vh;
+    /* Equivalent to 20px */
     max-width: 100%;
     box-sizing: border-box;
 }
 
 @keyframes containerFadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 h1 {
@@ -65,18 +92,29 @@ h1 {
 }
 
 @keyframes textGlow {
-    from { text-shadow: 0 0 1vh var(--highlight-color); } /* Equivalent to 5px */
-    to { text-shadow: 0 0 4vh var(--highlight-color); } /* Equivalent to 20px */
+    from {
+        text-shadow: 0 0 1vh var(--highlight-color);
+    }
+
+    /* Equivalent to 5px */
+    to {
+        text-shadow: 0 0 4vh var (--highlight-color);
+    }
+
+    /* Equivalent to 20px */
 }
 
 .radio-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2vh auto; /* Equivalent to 20px */
+    margin: 2vh auto;
+    /* Equivalent to 20px */
     position: relative;
-    width: 60vw; /* Set container width */
-    height: 45vh; /* Set container height */
+    width: 60vw;
+    /* Set container width */
+    height: 45vh;
+    /* Set container height */
 }
 
 input[type="radio"] {
@@ -84,38 +122,49 @@ input[type="radio"] {
 }
 
 label {
-    margin: 0 2vh; /* Equivalent to 20px */
-    padding: 2vh; /* Equivalent to 20px */
-    border: 0.2vh solid var(--highlight-color); /* Equivalent to 2px */
-    border-radius: 1vh; /* Equivalent to 10px */
+    margin: 0 2vh;
+    /* Equivalent to 20px */
+    padding: 2vh;
+    /* Equivalent to 20px */
+    border: 0.2vh solid var(--highlight-color);
+    /* Equivalent to 2px */
+    border-radius: 1vh;
+    /* Equivalent to 10px */
     cursor: pointer;
     font-size: var(--font-size-medium);
     color: var(--text-color);
-    transition: background-color 0.1s, color 0.1s, left 0.1s ease, top 0.1s ease; /* Faster transition */
-    width: 10vw; /* Set a fixed width */
+    transition: background-color 0.1s, color 0.1s, left 0.1s ease, top 0.1s ease;
+    /* Faster transition */
+    width: 10vw;
+    /* Set a fixed width */
     text-align: center;
     box-sizing: border-box;
-    display: inline-block; /* Display labels side by side */
+    display: inline-block;
+    /* Display labels side by side */
 }
 
-input[type="radio"]:checked + label {
+input[type="radio"]:checked+label {
     background-color: var(--highlight-color);
     color: white;
 }
 
 .noLabelMoving {
-    transition: left 0.05s ease, top 0.05s ease; /* Even faster transition for movement */
+    transition: left 0.05s ease, top 0.05s ease;
+    /* Even faster transition for movement */
 }
 
 button {
     background-color: var(--button-bg-color);
     color: white;
     border: none;
-    padding: 1.5vh 3vh; /* Equivalent to 15px 30px */
+    padding: 1.5vh 3vh;
+    /* Equivalent to 15px 30px */
     font-size: var(--font-size-medium);
     cursor: pointer;
-    border-radius: 1vh; /* Equivalent to 10px */
-    margin-top: 2vh; /* Equivalent to 20px */
+    border-radius: 1vh;
+    /* Equivalent to 10px */
+    margin-top: 2vh;
+    /* Equivalent to 20px */
     transition: background-color 0.1s, transform 0.1s;
 }
 
@@ -125,30 +174,40 @@ button:hover {
 }
 
 #result {
-    margin-top: 2vh; /* Equivalent to 20px */
-    font-size: 4vh; /* Equivalent to 24px */
+    margin-top: 2vh;
+    /* Equivalent to 20px */
+    font-size: 4vh;
+    /* Equivalent to 24px */
     color: var(--text-color);
     animation: resultFadeIn 0.5s ease-in-out;
 }
 
 @keyframes resultFadeIn {
-    from { opacity: 0; transform: translateY(1vh); } /* Equivalent to 10px */
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(1vh);
+    }
+
+    /* Equivalent to 10px */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .message {
     display: none;
 }
 
-input:invalid ~ #result .invalid {
+input:invalid~#result .invalid {
     display: block;
 }
 
-input#yes:checked ~ #result .yes {
+input#yes:checked~#result .yes {
     display: block;
 }
 
-input#no:checked ~ #result .no {
+input#no:checked~#result .no {
     display: block;
 }
 
@@ -166,8 +225,10 @@ input#no:checked ~ #result .no {
 .confetti {
     position: fixed;
     top: 0;
-    width: 1vw; /* Equivalent to 10px */
-    height: 1vw; /* Equivalent to 10px */
+    width: 1vw;
+    /* Equivalent to 10px */
+    height: 1vw;
+    /* Equivalent to 10px */
     background: red;
     opacity: 1;
     animation: confettiFall 2s ease-out forwards;
@@ -186,25 +247,36 @@ input#no:checked ~ #result .no {
     }
 
     label {
-        margin: 0 2vh; /* Equivalent to 20px */
+        margin: 0 2vh;
+        /* Equivalent to 20px */
     }
 }
 
 header {
-    background-color: #333; /* Background color for the navbar */
-    padding: 1vh 0; /* Padding for top and bottom */
-    position: fixed; /* Fix the navbar to the top */
-    width: 100%; /* Make the navbar full width */
-    top: 0; /* Position it at the top */
-    z-index: 1000; /* Ensure it stays on top */
+    background-color: #333;
+    /* Background color for the navbar */
+    padding: 1vh 0;
+    /* Padding for top and bottom */
+    position: fixed;
+    /* Fix the navbar to the top */
+    width: 100%;
+    /* Make the navbar full width */
+    top: 0;
+    /* Position it at the top */
+    z-index: 1000;
+    /* Ensure it stays on top */
 }
 
 .game-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    height: 100vh; /* Full height of the viewport */
-    width: 100%; /* Full width */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    height: 100vh;
+    /* Full height of the viewport */
+    width: 100%;
+    /* Full width */
     position: absolute;
     top: 0;
     left: 0;
@@ -213,49 +285,66 @@ header {
 .game {
     font-size: var(--font-size-large);
     display: flex;
-    flex-direction: column; /* Arrange children in a column */
-    align-items: center; /* Center children horizontally */
+    flex-direction: column;
+    /* Arrange children in a column */
+    align-items: center;
+    /* Center children horizontally */
 }
 
 .nav-items {
-    list-style-type: none; /* Remove bullets */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    display: flex; /* Display list items in a row */
+    list-style-type: none;
+    /* Remove bullets */
+    margin: 0;
+    /* Remove default margin */
+    padding: 0;
+    /* Remove default padding */
+    display: flex;
+    /* Display list items in a row */
 }
 
 .nav-items li {
-    margin: 0 1.5vh; /* Equivalent to 15px */
+    margin: 0 1.5vh;
+    /* Equivalent to 15px */
 }
 
 .nav-items a {
-    text-decoration: none; /* Remove underline from links */
-    color: white; /* Link color */
-    font-size: var(--font-size-small); /* Font size for links */
-    transition: color 0.2s ease; /* Smooth transition for color change */
+    text-decoration: none;
+    /* Remove underline from links */
+    color: white;
+    /* Link color */
+    font-size: var(--font-size-small);
+    /* Font size for links */
+    transition: color 0.2s ease;
+    /* Smooth transition for color change */
 }
 
 .nav-items a:hover {
-    color: var(--border-color); /* Change color on hover */
+    color: var(--border-color);
+    /* Change color on hover */
 }
 
 .game-content {
-    font-size: var(--font-size-large); /* Font size for the paragraph */
+    font-size: var(--font-size-large);
+    /* Font size for the paragraph */
     align-items: center;
 }
 
 .game-content a {
     text-decoration: none;
     color: var(--link-color);
-    border: 0.2vh solid var(--link-color); /* Equivalent to 2px */
-    border-radius: 1vh; /* Equivalent to 10px */
-    padding: 1vh 2vh; /* Equivalent to 10px 20px */
+    border: 0.2vh solid var(--link-color);
+    /* Equivalent to 2px */
+    border-radius: 1vh;
+    /* Equivalent to 10px */
+    padding: 1vh 2vh;
+    /* Equivalent to 10px 20px */
     font-size: var(--font-size-medium);
     transition: background-color 0.5s ease;
 }
 
 .game h1 {
-    margin-bottom: 2vh; /* Equivalent to 20px */
+    margin-bottom: 2vh;
+    /* Equivalent to 20px */
 }
 
 .game-content a:hover {
@@ -263,38 +352,50 @@ header {
 }
 
 .credit {
-    margin-top: 6vh; /* Equivalent to 60px */
+    margin-top: 6vh;
+    /* Equivalent to 60px */
     text-align: center;
-    padding: 2vh; /* Equivalent to 20px */
+    padding: 2vh;
+    /* Equivalent to 20px */
 }
 
 .credit-display {
     margin: 0 auto;
-    max-width: 60vw; /* Equivalent to 600px */
+    max-width: 60vw;
+    /* Equivalent to 600px */
 }
 
 .important-info {
     margin: 2vh auto;
     padding: 2vh;
     max-width: auto;
-    text-align: center; /* Ensure text is centered */
+    text-align: center;
+    /* Ensure text is centered */
 }
 
 .important-info h2 {
-    margin-bottom: 2vh; /* Equivalent to 20px */
+    margin-bottom: 2vh;
+    /* Equivalent to 20px */
 }
 
 .item-container {
-    border: 0.2vh solid var(--border-color); /* Equivalent to 2px */
-    border-radius: 1vh; /* Equivalent to 10px */
-    padding: 2vh; /* Equivalent to 20px */
-    margin: 1vh; /* Equivalent to 10px */
+    border: 0.2vh solid var(--border-color);
+    /* Equivalent to 2px */
+    border-radius: 1vh;
+    /* Equivalent to 10px */
+    padding: 2vh;
+    /* Equivalent to 20px */
+    margin: 1vh;
+    /* Equivalent to 10px */
     text-align: center;
     display: inline-block;
-    width: calc(33.33% - 4vh); /* Ensures all boxes have the same width */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    width: calc(33.33% - 4vh);
+    /* Ensures all boxes have the same width */
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
     height: auto;
-    transition: background-color 0.5s ease; /* Transition for background-color */
+    transition: background-color 0.5s ease;
+    /* Transition for background-color */
 }
 
 .item-container:hover {
@@ -302,5 +403,49 @@ header {
 }
 
 .item-container h1 {
-    font-size: 4vh; /* Equivalent to 24px */
+    font-size: 4vh;
+    /* Equivalent to 24px */
+}
+
+/* Media Queries for Mobile */
+@media (max-width: 768px) {
+    .radio-container {
+        flex-direction: column;
+        width: 80vw;
+        height: auto;
+    }
+
+    label {
+        margin: 1vh 0;
+        width: auto;
+        font-size: var(--font-size-small);
+    }
+
+    button {
+        width: 80vw;
+        font-size: var(--font-size-small);
+    }
+
+    #result {
+        font-size: var(--font-size-medium);
+    }
+
+    .game-content {
+        font-size: var(--font-size-medium);
+    }
+
+    .game-content a {
+        width: 80vw;
+        font-size: var(--font-size-small);
+        padding: 1.5vh;
+    }
+
+    .item-container {
+        width: 90vw;
+        margin: 2vh auto;
+    }
+
+    .item-container h1 {
+        font-size: var(--font-size-medium);
+    }
 }
