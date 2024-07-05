@@ -24,7 +24,6 @@ const noRadio = document.getElementById('no');
 const yesLabel = document.getElementById('yesLabel');
 const moveDistance = 400; // Minimum move distance away from the cursor
 let clickCount = 0;
-let timer;
 let countdown;
 const countdownElement = document.createElement('div');
 countdownElement.id = 'countdown';
@@ -48,11 +47,10 @@ const handleNoLabelClick = debounce(function (event) {
         console.log('Second click: "No" radio button deselected and moved'); // Debug log
     } else if (clickCount === 3) {
         showTemporaryMessage('OH NO, IT SLIPS AGAIN, LAST TIME :>>>');
-        moveLabel(event); // Move the label on the second click
+        moveLabel(event); // Move the label on the third click
         noRadio.checked = false; // Deselect the "No" radio button
-        console.log('Second click: "No" radio button deselected and moved');
-    }    
-    
+        console.log('Third click: "No" radio button deselected and moved'); // Debug log
+    }
 }, 200); // Adjust the debounce delay as needed
 
 noLabel.addEventListener('click', handleNoLabelClick);
@@ -110,7 +108,7 @@ function startTimer() {
             showTemporaryMessage('20 SECONDS LEFT!!');
         } else if (timeLeft === 10) {
             showTemporaryMessage('10 SECONDS LEFT!!');
-        } else if (timeLeft === 5) { // Corrected variable name
+        } else if (timeLeft === 5) {
             showTemporaryMessage('5 SECONDS LEFT GOGO!!');
         }
 
@@ -131,7 +129,6 @@ function startTimer() {
         }
     }, 1000); // Update every second
 }
-
 
 document.addEventListener('DOMContentLoaded', (event) => {
     startTimer();
@@ -206,6 +203,12 @@ function showRetryButton() {
         noLabel.classList.remove('fade-out');
         yesLabel.classList.remove('center-yes');
         document.body.removeChild(retryButton);
+
+        // Reset the form and messages
+        document.getElementById('proposalForm').reset();
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = '';
+
         startTimer();
     });
 }
