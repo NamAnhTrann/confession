@@ -16,8 +16,10 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
+const noRadio = document.getElementById('no');
+const yesLabel = document.getElementById('yesLabel');
 const moveDistance = 400; // Minimum move distance away from the cursor
-let firstClick = true;
+let clickCount = 0;
 let timer;
 let countdown;
 const countdownElement = document.createElement('div');
@@ -28,12 +30,34 @@ noLabel.addEventListener('mouseenter', function (event) {
     moveLabel(event);
 });
 
-noLabel.addEventListener('click', function (event) {
-    if (firstClick) {
-        firstClick = false;
+const handleNoLabelClick = debounce(function (event) {
+    clickCount++;
+    console.log(`No label clicked ${clickCount} time(s)`); // Debug log
+    if (clickCount === 1) {
         showTemporaryMessage('OOPS IT SLIPS AWAY');
+        noRadio.checked = false; // Deselect the "No" radio button
+        console.log('First click: "No" radio button deselected'); // Debug log
+    } else if (clickCount === 2) {
+        showTemporaryMessage('OH NO, IT SLIPS AWAY AGAIN HAHAHAHAHA');
+        moveLabel(event); // Move the label on the second click
+        noRadio.checked = false; // Deselect the "No" radio button
+        console.log('Second click: "No" radio button deselected and moved'); // Debug log
     }
-});
+}, 200); // Adjust the debounce delay as needed
+
+noLabel.addEventListener('click', handleNoLabelClick);
+
+function debounce(func, delay) {
+    let timeoutId;
+    return function (...args) {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }, delay);
+    };
+}
 
 function moveLabel(event) {
     const container = document.querySelector('.radio-container');
@@ -65,7 +89,7 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 8;
+    let timeLeft = 30  ;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
@@ -87,16 +111,8 @@ function startTimer() {
     }, 1000); // Update every second
 }
 
-function resetTimer() {
-    clearTimeout(timer);
-    clearInterval(countdown);
-    countdownElement.textContent = '';
-}
-
 document.addEventListener('DOMContentLoaded', (event) => {
     startTimer();
-    document.getElementById('noLabel').addEventListener('click', resetTimer);
-    document.getElementById('yesLabel').addEventListener('click', resetTimer);
 });
 
 function showConfetti() {
