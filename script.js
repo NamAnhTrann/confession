@@ -29,9 +29,8 @@ const countdownElement = document.createElement('div');
 countdownElement.id = 'countdown';
 document.body.appendChild(countdownElement);
 
-noLabel.addEventListener('mouseenter', function (event) {
-    moveLabel(event);
-});
+noLabel.addEventListener('mouseenter', moveLabel);
+noLabel.addEventListener('touchstart', moveLabel);
 
 const handleNoLabelClick = debounce(function (event) {
     clickCount++;
@@ -54,10 +53,11 @@ const handleNoLabelClick = debounce(function (event) {
         showTemporaryMessage("YOU SERIOUS ?");
         moveLabel(event);
         noRadio.checked = false;
-     }
+    }
 }, 200); // Adjust the debounce delay as needed
 
 noLabel.addEventListener('click', handleNoLabelClick);
+noLabel.addEventListener('touchstart', handleNoLabelClick);
 
 function debounce(func, delay) {
     let timeoutId;
@@ -81,7 +81,7 @@ function moveLabel(event) {
     do {
         newLeft = Math.random() * (containerRect.width - labelRect.width);
         newTop = Math.random() * (containerRect.height - labelRect.height);
-    } while (isTooCloseToCursor(newLeft, newTop, event.clientX, event.clientY));
+    } while (isTooCloseToCursor(newLeft, newTop, event.clientX || event.touches[0].clientX, event.clientY || event.touches[0].clientY));
 
     noLabel.style.position = 'absolute';
     noLabel.style.left = `${newLeft}px`;
@@ -179,8 +179,8 @@ function showTemporaryMessage(message) {
         messageElement.style.opacity = '0';
         setTimeout(() => {
             document.body.removeChild(messageElement);
-        }, 200); // Changed to 200ms for 0.2 seconds display
-    }, 200); // Changed to 200ms for 0.2 seconds display
+        }, 500); // Adjusted to 500ms for smooth fade-out
+    }, 1000); // Adjusted to 1000ms for 1 second display
 }
 
 function showRetryButton() {
