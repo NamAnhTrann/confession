@@ -58,7 +58,7 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 10;
+    let timeLeft = 6;
     countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
@@ -105,5 +105,10 @@ function showConfetti() {
     setTimeout(() => {
         const confettis = document.querySelectorAll('.confetti');
         confettis.forEach(confetti => confetti.remove());
-    }, 4000); // Remove confetti
+    }, 4000); // Remove confetti after 4 seconds
+}
+
+function getRandomColor() {
+    const colors = ['#ff0a54', '#ff477e', '#ff7096', '#ff85a1', '#fbb1bd', '#f9bec7'];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
