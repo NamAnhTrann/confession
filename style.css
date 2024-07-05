@@ -107,3 +107,31 @@ input#yes:checked ~ #result .yes {
 input#no:checked ~ #result .no {
     display: block;
 }
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.confetti {
+    position: fixed;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    background: red;
+    opacity: 0;
+    animation: confetti 2s ease-out forwards;
+}
+
+@keyframes confetti {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 1;
+    }
+}
