@@ -16,15 +16,12 @@ document.getElementById('proposalForm').addEventListener('submit', function (eve
 });
 
 const noLabel = document.getElementById('noLabel');
+const yesLabel = document.getElementById('yes');
 const moveDistance = 300; // Minimum move distance away from the cursor
 let timer;
 let countdown;
 const countdownElement = document.createElement('div');
-countdownElement.style.position = 'fixed';
-countdownElement.style.top = '20px';
-countdownElement.style.right = '20px';
-countdownElement.style.fontSize = '2em';
-countdownElement.style.color = '#b84747';
+countdownElement.id = 'countdown';
 document.body.appendChild(countdownElement);
 
 noLabel.addEventListener('mouseenter', function (event) {
@@ -61,16 +58,17 @@ function isTooCloseToCursor(newLeft, newTop, cursorX, cursorY) {
 }
 
 function startTimer() {
-    let timeLeft = 5;
-    countdownElement.textContent = `Time left: ${timeLeft}s`;
+    let timeLeft = 4;
+    countdownElement.textContent = `${timeLeft}s`;
 
     countdown = setInterval(() => {
         timeLeft--;
-        countdownElement.textContent = `Time left: ${timeLeft}s`;
+        countdownElement.textContent = `${timeLeft}s`;
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
             noLabel.classList.add('fade-out'); // Add fade-out class for disappearing animation
+            yesLabel.classList.add('center-yes'); // Add class to center the "Yes" button
 
             const resultDiv = document.getElementById('result');
             resultDiv.textContent = 'TOO LATE, ITS A YES';

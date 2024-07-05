@@ -8,11 +8,23 @@ body {
     margin: 0;
     overflow: hidden;
     animation: backgroundAnimation 5s infinite alternate;
+    position: relative;
 }
 
 @keyframes backgroundAnimation {
     0% { background-color: #f8b8b8; }
     100% { background-color: #ffe6e6; }
+}
+
+#countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10em;
+    color: rgba(255, 255, 255, 0.582); /* Light color to appear in the background */
+    z-index: -1; /* Ensure it stays behind other elements */
+    pointer-events: none; /* Allow clicks to pass through */
 }
 
 .container {
@@ -134,4 +146,12 @@ input#no:checked ~ #result .no {
         transform: translateY(100vh) rotate(360deg);
         opacity: 1;
     }
+}
+
+.center-yes {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
 }
