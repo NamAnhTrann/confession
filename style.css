@@ -173,3 +173,71 @@ input#no:checked ~ #result .no {
         margin: 0 20px;
     }
 }
+
+
+header {
+    background-color: #333; /* Background color for the navbar */
+    padding: 10px 0; /* Padding for top and bottom */
+    position: fixed; /* Fix the navbar to the top */
+    width: 100%; /* Make the navbar full width */
+    top: 0; /* Position it at the top */
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+.game-selection {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center the nav items */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+.nav-items {
+    list-style-type: none; /* Remove bullets */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Display list items in a row */
+}
+
+.nav-items li {
+    margin: 0 15px; /* Add space between nav items */
+}
+
+.nav-items a {
+    text-decoration: none; /* Remove underline from links */
+    color: white; /* Link color */
+    font-size: 16px; /* Font size for links */
+    transition: color 0.2s ease; /* Smooth transition for color change */
+
+}
+
+.nav-items a:hover {
+    color: #ec6969; /* Change color on hover */
+
+}
+.game {
+    font-size:30px;
+}
+.game-content {
+    font-size: 30px; /* Font size for the paragraph */
+}
+
+.game-content a {
+    text-decoration: none; /* Remove underline from the link */
+    color:#ec6969;
+    transition: color 0.2s ease; /* Smooth transition for color change */
+    border-radius: 15px; /* Make the border corners rounded */
+    padding: 10px; /* Add some padding inside the border */
+    display: inline-block; 
+    border: 2px solid #ec6969; /* Add a border around the link */
+
+
+    
+}
+
+.game-content a:hover {
+    color: red; /* Change color on hover */
+}
+
+
+
+

@@ -50,7 +50,11 @@ const handleNoLabelClick = debounce(function (event) {
         moveLabel(event); // Move the label on the third click
         noRadio.checked = false; // Deselect the "No" radio button
         console.log('Third click: "No" radio button deselected and moved'); // Debug log
-    }
+    } else if (clickCount == 4) {
+        showTemporaryMessage("YOU SERIOUS ?");
+        moveLabel(event);
+        noRadio.checked = false;
+     }
 }, 200); // Adjust the debounce delay as needed
 
 noLabel.addEventListener('click', handleNoLabelClick);
